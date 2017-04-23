@@ -13,4 +13,9 @@ class StartPlace
 		array_push($this->rockets, $rocket);
 	}
 
+	public function getStock()
+	{
+		return $this->rockets;
+	}
+
 }
