@@ -1,0 +1,17 @@
+{
+    "name": "root/test_oop",
+    "description": "my tests oop",
+    "authors": [
+        {
+            "name": "dydaev",
+            "email": "dydaev@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload":{
+    	"psr-4":{
+		"root//": ""
+	}
+    }
+}
