@@ -6,7 +6,7 @@ use root\rocketInterface;
 
 class ArmyRocket implements rocketInterface
 {
-	private $name;
+	protected $name;
 
 	function __construct($name)
 	{
