@@ -4,6 +4,9 @@ namespace root;
 
 require_once 'vendor/autoload.php';
 
-$armyR = new ArmyRocket('C300');
+$c300 = new ArmyRocket('C300');
+$proton = new SpiceRocket('Proton');
+
+
 
 
