@@ -9,6 +9,11 @@ class SpiceRocket implements rocketInterface
 	protected $name;
 	protected $price;
 
+	public function getName()
+	{
+		return $this->name;
+	}
+
 	public function propellant()
 	{
 		return 'liquid';
