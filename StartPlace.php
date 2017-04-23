@@ -2,15 +2,15 @@
 
 namespace root;
 
-use root\interfaceRocket;
+use root\rocketInterface;
 
 class StartPlace
 {
 	private $rockets = Array();
 	
-	public function addRocket(inatefaceRocket $rocket)
+	public function addRocket(rocketInterface $rocket)
 	{
-		push($this->rockets, $rocket);
+		array_push($this->rockets, $rocket);
 	}
 
 }
