@@ -17,4 +17,14 @@ class ArmyRocket implements rocketInterface
 	{
 		return $this->name;
 	}
+	
+	public function propellant()
+	{
+		return "solid";
+	}
+
+	public function engine()
+	{
+		return "300KW";
+	}
 }
