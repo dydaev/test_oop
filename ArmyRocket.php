@@ -7,11 +7,7 @@ use root\rocketInterface;
 class ArmyRocket implements rocketInterface
 {
 	protected $name;
-
-	function __construct($name)
-	{
-		$this->name = $name;
-	}
+	protected $price;
 
 	public function getName()
 	{

@@ -6,12 +6,8 @@ use root\rocketInterface;
 
 class SpiceRocket implements rocketInterface
 {
-	private $name;
-
-	function __construct($name)
-	{
-		$this->name = $name;
-	}
+	protected $name;
+	protected $price;
 
 	public function propellant()
 	{
