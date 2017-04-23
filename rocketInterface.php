@@ -1,4 +1,5 @@
 <?php
+namespace root;
 
 interface rocketInterface
 {
