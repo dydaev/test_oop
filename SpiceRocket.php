@@ -13,7 +13,7 @@ class SpiceRocket implements rocketInterface
 		$this->name = $name;
 	}
 
-	public function ropellant()
+	public function propellant()
 	{
 		return 'liquid';
 	}
