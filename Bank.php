@@ -1,0 +1,58 @@
+<?php
+
+namespace root;
+
+class Bank
+{
+	private $bankName;
+        private $bankNumber;//{\d}5
+        private $accounts = Array();	
+
+	function __construct($bankName, $bancNumber)
+	{
+		$this->bankName = $bankName;
+		$this->bankNumber = $bankNumber;
+	}
+	
+	public function createNewAccount($name)
+	{
+		$num; //{3-6}1{\d}5{\d}9{\d}1
+		$paySystem;
+		do{
+			$paySystem = rand(3, 6);
+			$num = $paySystem.$this->bankNumber.rand(100000000, 999999999);
+			$num1;//https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC_%D0%9B%D1%83%D0%BD%D0%B0
+			for($i = 0; $i < count($num); $i++) {
+				if ($i % 2) {
+					if ($num[$i] * 2 >= 10) {
+						$num1 += ((int)($num[$i] * 2)/10) + ($num[$i] * 2) % 10;
+					} else { 
+						$num1 += $num[$i] * 2;
+					}
+				} else {
+					$num1 += $num[$i];
+				}
+			}
+			$num = $num.($num1 % 10);
+		}while(array_filter($this->accounts, function($acc) use ($num)
+		{
+			return $acc->accountNumber == $num ? false : true;
+		}));
+		array_push($this->accounts, new Account($name, $num));
+		return $num;
+	}
+}
+
+class Account
+{
+	private $accountNumber;
+	private $accountName;
+	private $moneys;
+	private $log;
+
+	function __construct($number, $name)
+	{
+		$this->accountNumber = $number;
+		$this->accountName = $name;
+	}
+}
