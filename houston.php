@@ -13,7 +13,7 @@ class Houston
 
 }
 
-$bankAtlantic = new Bank('Atlantic');
+$bankAtlantic = new Bank('Atlantic', 53725);
 echo $bankAtlantic->createNewAccount('Start Place A12')."\n";
 
 $startPlaceA12 = new StartPlace();
