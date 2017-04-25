@@ -3,8 +3,9 @@
 namespace root;
 
 use root\rocketInterface;
+use root\Counter;
 
-abstract class Rocket implements rocketInterface
+abstract class Rocket extends Counter implements rocketInterface
 {
 	protected $name;
 	protected $price;

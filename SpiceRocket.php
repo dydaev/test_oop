@@ -2,9 +2,9 @@
 
 namespace root;
 
-use root\rocketInterface;
+use rootRocket;
 
-class SpiceRocket implements rocketInterface
+class SpiceRocket extends Rocket
 {
 	protected $name;
 	protected $price;
