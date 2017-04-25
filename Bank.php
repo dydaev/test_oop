@@ -2,15 +2,19 @@
 
 namespace root;
 
-class Bank
+use root\Transaction;
+
+class Bank extends Transaction
 {
+	private $balans;
 	private $bankName;
-        private $bankNumber;//{\d}5
+        private $bankId;//{\d}5
         private $accounts = Array();	
 
-	function __construct($bankName, $bankNumber)
+	function __construct($bankName, $bankId, $balans)
 	{
 		$this->bankName = $bankName;
+		$this->balans = $balans;
 		$this->bankNumber = $bankNumber;
 	}
 	
@@ -41,6 +45,11 @@ class Bank
 		array_push($this->accounts, new Account($name, $num));
 		return $num;
 	}
+
+	public function newTransaction()
+	{
+	}
+
 }
 
 class Account
@@ -48,11 +57,22 @@ class Account
 	private $accountNumber;
 	private $accountName;
 	private $moneys;
-	private $log;
 
 	function __construct($number, $name)
 	{
 		$this->accountNumber = $number;
 		$this->accountName = $name;
+	}
+	public function setMoney($count)
+	{
+		$this->moneys += $count;
+	}
+	public function getMoney($count)
+	{
+		if ($counts <= $this->moneys) {
+			$this->moneys -= $count;
+			return $count;
+		}
+		return null;
 	}
 }
