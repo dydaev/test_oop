@@ -2,9 +2,9 @@
 
 namespace root;
 
-use root\rocketInterface;
+use root\Rocket;
 
-class StartPlace
+class StartPlace extends Payster
 {
 	private $rockets = Array();
 	private $money;
@@ -13,7 +13,7 @@ class StartPlace
 	{
 		$this->money = $money;
 	}
-	public function addRocket(rocketInterface $rocket)
+	public function addRocket(Rocket $rocket)
 	{
 		array_push($this->rockets, $rocket);
 	}

@@ -14,18 +14,16 @@ class Houston
 }
 
 $bankAtlantic = new Bank('Atlantic', 53725);
-echo $bankAtlantic->createNewAccount('Start Place A12')."\n";
 
-$startPlaceA12 = new StartPlace();
+$startPlaceA12 = new StartPlace(5000000);
 
-for($i = 10; $i >= 0; $i--){
-	if($i % 2){
-		$startPlaceA12->addRocket(new C300());
-	}else{
+$bankAtlantic->createNewAccount('Start Place A12');
+
+		$startPlaceA12->addRocket(new C300(5));
+		$startPlaceA12->addRocket($startPlaceA12->getStock()[0]->getObject(3));
 		$startPlaceA12->addRocket(new Proton());
-	}
-}
 
 foreach($startPlaceA12->getStock() as $rocket){
 	echo $rocket->getName()."\n";
+	echo "count= {$rocket->getCount()}\n";
 }
