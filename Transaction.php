@@ -48,7 +48,7 @@ class Transaction extends Payster
 		return $this->tax;
 	}
 
-	final public function getId()
+	final public function getIdTransaction()
 	{
 		return $this->id;
 	}
