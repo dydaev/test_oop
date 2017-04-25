@@ -3,6 +3,7 @@
 namespace root;
 
 use root\Transaction;
+use root\FRS;
 
 class Bank extends Transaction
 {

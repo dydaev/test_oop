@@ -1,6 +1,8 @@
 <?php
 namespace root;
 
+use root\Payster;
+
 class Transaction extends Payster
 {
 	protected $id;
@@ -13,8 +15,15 @@ class Transaction extends Payster
 	 *@int how much money
 	 *@return if transaction true retun id transaction else null
 	 */
-	protected function newTransaction(BankAccount $who, BankAccount $whom, $money)
-	{
+	protected function newTransaction(
+		Bank $whoBank,
+		$whoBankAccount,
+		Bank $whomBank,
+	       	$whomBankAccount,
+		$money
+	){
+	
+		
 		$idTransaction = null;
 		if ($whom->setMoney($who->getMoney($money-($money * $this->tax)))) {
 			$idTransaction = $this->getNewTransactionId();
