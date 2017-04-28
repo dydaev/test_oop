@@ -13,9 +13,13 @@ class Houston
 
 }
 
-$bankAtlantic = new Bank('Atlantic', 53725);
+$FRS = FRS::getInstance();
 
-$startPlaceA12 = new StartPlace(5000000);
+//$FRS
+
+$bankAtlantic = new Bank('Atlantic', 5000000);
+
+$startPlaceA12 = new StartPlace();
 
 $bankAtlantic->createNewAccount('Start Place A12');
 

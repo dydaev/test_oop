@@ -9,10 +9,6 @@ class StartPlace extends Payster
 	private $rockets = Array();
 	private $money;
 	
-	function __construct($money)
-	{
-		$this->money = $money;
-	}
 	public function addRocket(Rocket $rocket)
 	{
 		array_push($this->rockets, $rocket);
