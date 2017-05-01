@@ -8,6 +8,12 @@ final class Money
 	private static $checkSum;
 	private $sum;
 	private $currency;
+	private $keySum;
+
+	public function get_key_sum()
+	{
+		return $this->keySum;
+	}
 
 	private function error($idError)
 	{
@@ -34,7 +40,9 @@ final class Money
 			$oldSum = $this->sum;
 			$this->sum -= $sum;
 			try{
-				return new $this($this, $mainSum, $sum, $this->currency);
+				$this->keySum = rand(0637543202,0967823420);
+				return new $this($this, $this->keySum, $sum, $this->currency);
+				$this->keySum = 0;
 				$this->error(1);
 
 			} catch (Exception $error) {
@@ -59,12 +67,11 @@ final class Money
 
 	final private function __clone() {}
 
-	final public function __construct($key, $mainSum, $sum, $currency = 'usd')
+	final public function __construct($key, $keySum, $sum, $currency = 'usd')
 	{
 		$this->currency = $currency;
 		if ($key instanceof FRS || 
-				($key instanceof Money && ($key->getSum + $sum) == $mainSum)
-		) {
+				($key instanceof Money && $key->get_key_sum() === $keySum)) {
 			self::$checkSum += $sum;
 			$this->sum = $sum;
 		} else {
