@@ -9,6 +9,14 @@ final class Money
 	private $sum;
 	private $currency;
 
+	private function error($idError)
+	{
+		$errors = Array(
+			1 => "Error creating money!\n"
+		);
+		throw new Exception($errors[$idError]);
+	}
+
 	final public function getSum()
 	{
 		return $this->sum;
@@ -21,13 +29,21 @@ final class Money
 
 	final public function giveMoney($sum)
 	{
-		if ($sum <= $this->getSum()) {
+		if ($sum <= $this->getSum() && $sum > 0) {
 			self::$checkSum -= $sum;
+			$oldSum = $this->sum;
 			$this->sum -= $sum;
-			return new $this( $sum, $this->currency);
+			try{
+				return new $this($this, $mainSum, $sum, $this->currency);
+				$this->error(1);
+
+			} catch (Exception $error) {
+				echo $error->getMessage();
+				return null;
+			}
 		} else {
 			echo "Can`t give much money, dont have much\n";
-			return null;
+			return new $this($this, 0, $this->currency);
 		}
 	}
 
@@ -43,21 +59,35 @@ final class Money
 
 	final private function __clone() {}
 
-	final public function __construct( $sum, $currency = 'usd')
+	final public function __construct($key, $mainSum, $sum, $currency = 'usd')
 	{
-		self::$checkSum += $sum;
 		$this->currency = $currency;
-		$this->sum = $sum;
+		if ($key instanceof FRS || 
+				($key instanceof Money && ($key->getSum + $sum) == $mainSum)
+		) {
+			self::$checkSum += $sum;
+			$this->sum = $sum;
+		} else {
+			echo "BAD key for create money, it`s must be FRS or Money class!!!\n";
+			//unset($this);
+			$this->sum = 0;
+			//$this->__destruct() ;
+		}
 	}
 	
 	final public function __invoke($value = null)
 	{
 		if ($value instanceof Money) {
 			return $this->takeMoney($value);
-		} elseif (is_int($value)) {
+		} elseif ($value && is_int($value)) {
 			return $this->giveMoney($value);
 		}
 		return null;
+	}
+
+	function __destruct()
+	{
+		echo "goodbay mi love goodbay))"."\n";
 	}
 
 	public function __toString()
@@ -65,12 +95,3 @@ final class Money
 		return $this->sum."({$this->currency})";
 	}
 }
-
-
-$a = new Money(50);
-$b = $a->giveMoney(20);
-echo "a = {$a}, b = {$b} \n";
-$a($b->giveMoney(13));
-echo "a = {$a}, b = {$b} \n";
-$b($a->giveMoney(2000));
-echo "a = {$a}, b = {$b} \n";
